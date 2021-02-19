@@ -66,6 +66,7 @@
                     <navigationItem key="navigationItem" id="CFh-W1-EqB"/>
                     <connections>
                         <outlet property="felicidadeTextField" destination="9CG-6j-ACH" id="j2I-3r-ppW"/>
+                        <outlet property="itemsTableView" destination="Wmo-JJ-WvI" id="Bd5-d4-pNp"/>
                         <outlet property="nomeTextField" destination="g4B-Ax-cfm" id="sQQ-zP-Byf"/>
                     </connections>
                 </viewController>

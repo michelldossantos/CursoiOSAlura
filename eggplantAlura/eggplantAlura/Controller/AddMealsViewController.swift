@@ -11,7 +11,9 @@ protocol AddMealsDelegate{
     func add(_ meal: Meals)
 }
 
-class AddMealsViewController: UIViewController {
+class AddMealsViewController: UIViewController, addItemDelegate {
+   
+    
     
     // MARK: IBOutlet
     @IBOutlet var nomeTextField: UITextField?
@@ -35,8 +37,13 @@ class AddMealsViewController: UIViewController {
     }
     
     @objc func addItem(){
-        let addItemViewController = AddItemViewController()
+        let addItemViewController = AddItemViewController(delegate: self)
         navigationController?.pushViewController(addItemViewController, animated: true)
+    }
+    
+    func add(_ item: Item) {
+        items.append(item)
+        itemsTableView?.reloadData()
     }
     
     //MARK: IBAction
