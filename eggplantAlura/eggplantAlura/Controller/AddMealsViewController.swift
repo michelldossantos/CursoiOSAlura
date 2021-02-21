@@ -22,10 +22,7 @@ class AddMealsViewController: UIViewController, addItemDelegate {
     
     //MARK: VAR
     var delegate: AddMealsDelegate?
-    var items = [Item(nome: "Massa", calorias: 300.0),
-                 Item(nome: "Tomate", calorias: 433),
-                 Item(nome: "Queijo", calorias: 67),
-                 Item(nome: "Salame", calorias: 45.0)]
+    var items: [Item] = []
     
     var selecteditems:[Item] = []
     
@@ -34,6 +31,9 @@ class AddMealsViewController: UIViewController, addItemDelegate {
     override func viewDidLoad(){
         let button = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(addItem))
         navigationItem.rightBarButtonItem = button
+        
+        items = ItemsDao().itemsRestore()
+       
     }
     
     @objc func addItem(){
@@ -43,26 +43,39 @@ class AddMealsViewController: UIViewController, addItemDelegate {
     
     func add(_ item: Item) {
         items.append(item)
-        itemsTableView?.reloadData()
+        if let tableView = itemsTableView {
+            tableView.reloadData()
+        }else{
+            Alert(viewController: self).show(title: "Desculpe", message: "Não foi possível recaregr a tabela")
+        }
+        ItemsDao().saveItems(items)
+
     }
     
+   
     //MARK: IBAction
     @IBAction func adicionar(_ sender: Any) {
         
-        guard let nomeDaRefeicao = nomeTextField?.text else {
-            return
-        }
         
-        guard let felicidadeDaRefeicao = felicidadeTextField?.text, let felicidade = Int(felicidadeDaRefeicao) else {
-            return
-        }
-        
-        let refeicao = Meals(nome: nomeDaRefeicao, felicidade: felicidade,items: selecteditems)
-        
-        delegate?.add(refeicao)
+        guard let meal: Meals = checkTextFields() else {
+            Alert(viewController: self).show(message: "Erro ao ler formulário")
+            return}
+        delegate?.add(meal)
         navigationController?.popViewController(animated: true)
     }
     
+    func checkTextFields() -> Meals?{
+        guard let nomeDaRefeicao = nomeTextField?.text else {
+            return nil
+        }
+        
+        guard let felicidadeDaRefeicao = felicidadeTextField?.text, let felicidade = Int(felicidadeDaRefeicao) else {
+            return nil
+        }
+        
+        let meal = Meals(nome: nomeDaRefeicao, felicidade: felicidade,items: selecteditems)
+        return meal
+    }
     
 }
 
