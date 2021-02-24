@@ -9,13 +9,18 @@ import UIKit
 
 class PackagesViewController: UIViewController {
     @IBOutlet weak var collecttionTravelPackages: UICollectionView!
-    let arrayViagens:[Viagem] = ViagemDao().retornaTodasAsViagens()
-    
+    @IBOutlet weak var searchTravel: UISearchBar!
+    @IBOutlet weak var labelNumberOfPackges: UILabel!
+    let arrayAllViagens:[Viagem] = ViagemDao().retornaTodasAsViagens()
+    var arrayViagens: [Viagem] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        arrayViagens = arrayAllViagens
+        labelNumberOfPackges.text = updateContLabelNumberPackages()
         collecttionTravelPackages.dataSource = self
         collecttionTravelPackages.delegate = self
-
+        searchTravel.delegate = self
+        
     }
 }
 
@@ -34,7 +39,11 @@ extension PackagesViewController: UICollectionViewDataSource{
         cell.setup(travel: arrayViagens[indexPath.row])
         return cell
     }
-
+    func updateContLabelNumberPackages() -> String{
+        return arrayViagens.count == 1 ? "1 pacote encontrado" : "\(arrayViagens.count) pacotes encontrados"
+        
+    }
+    
 }
 
 extension PackagesViewController: UICollectionViewDelegateFlowLayout{
@@ -42,5 +51,17 @@ extension PackagesViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collecttionTravelPackages.bounds.width / 2
         return CGSize(width: cellWidth - 15 , height: 160)
+    }
+}
+
+extension PackagesViewController: UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        arrayViagens = arrayAllViagens
+        if !searchText.isEmpty{
+            arrayViagens = arrayAllViagens.filter{ $0.titulo.contains(searchText)}
+        }
+        labelNumberOfPackges.text = updateContLabelNumberPackages()
+        collecttionTravelPackages.reloadData()
     }
 }

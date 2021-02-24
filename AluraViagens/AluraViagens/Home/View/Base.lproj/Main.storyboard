@@ -253,22 +253,21 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9GX-lW-ADT">
-                                        <rect key="frame" x="0.0" y="23.5" width="359" height="30"/>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="JL2-cN-tpj">
+                                        <rect key="frame" x="0.0" y="24" width="359" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="OzR-p0-M3y"/>
+                                            <constraint firstAttribute="height" constant="35" id="5sn-gO-7wX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 Pacotes encontrados" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51s-Oz-JNt">
-                                        <rect key="frame" x="0.0" y="56.5" width="359" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="61.5" width="359" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7WQ-2J-YwZ">
-                                        <rect key="frame" x="0.0" y="80" width="359" height="538"/>
+                                        <rect key="frame" x="0.0" y="85" width="359" height="533"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9JW-er-i5a">
                                             <size key="itemSize" width="134" height="160"/>
@@ -353,6 +352,8 @@
                     <tabBarItem key="tabBarItem" title="pacotes" id="fPr-Vs-zS0"/>
                     <connections>
                         <outlet property="collecttionTravelPackages" destination="7WQ-2J-YwZ" id="2j2-e7-vyS"/>
+                        <outlet property="labelNumberOfPackges" destination="51s-Oz-JNt" id="Gli-Vz-BHb"/>
+                        <outlet property="searchTravel" destination="JL2-cN-tpj" id="EK5-44-s5f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsN-Y2-gnN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
