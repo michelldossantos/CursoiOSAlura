@@ -26,7 +26,7 @@ class ViagemTableViewCell: UITableViewCell {
     }
     
     func setup(_ viagem:Viagem){
-        labeldays.text = "\(viagem.quantidadedeDias) Dias"
+        labeldays.text =   viagem.quantidadedeDias == 1 ? "1 dia" : "\(viagem.quantidadedeDias) dias"
         labelTitle.text = viagem.titulo
         labelPrice.text = "R$ \(viagem.preco)"
         imageViagem.image = UIImage(named: viagem.caminhoDaImagem)

@@ -59,16 +59,13 @@ extension PackagesViewController: UICollectionViewDelegateFlowLayout{
 
 extension PackagesViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-//        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()?.performSegue(withIdentifier: "travelDetailViewController", sender: .none) as? travelDetailViewController {
-//            self.present(viewController, animated: true)
-//        }
-        
+    
         let package = arrayViagens[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "travelDetailViewController") as! travelDetailViewController
         controller.package = package
-        self.present(controller, animated: true)
+//        self.present(controller, animated: true)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 

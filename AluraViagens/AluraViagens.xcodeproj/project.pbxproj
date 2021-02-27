@@ -18,6 +18,7 @@
 		D084159D25E1FE9600594C22 /* Viagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084159C25E1FE9600594C22 /* Viagem.swift */; };
 		D08415A125E200D100594C22 /* ViagemDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08415A025E200D100594C22 /* ViagemDao.swift */; };
 		D08415A525E2049100594C22 /* ViagemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08415A425E2049100594C22 /* ViagemTableViewCell.swift */; };
+		D0DC83F925E95EF600744B03 /* ConfirmsPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DC83F825E95EF600744B03 /* ConfirmsPaymentViewController.swift */; };
 		D0E4E93525E678B400A9BE2F /* travelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E4E93425E678B400A9BE2F /* travelDetailViewController.swift */; };
 		D0E4E93925E683A900A9BE2F /* PacoteViagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E4E93825E683A900A9BE2F /* PacoteViagem.swift */; };
 		D0E4E93C25E68E8D00A9BE2F /* packagesTravelsDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E4E93B25E68E8D00A9BE2F /* packagesTravelsDao.swift */; };
@@ -54,6 +55,7 @@
 		D084159C25E1FE9600594C22 /* Viagem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viagem.swift; sourceTree = "<group>"; };
 		D08415A025E200D100594C22 /* ViagemDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViagemDao.swift; sourceTree = "<group>"; };
 		D08415A425E2049100594C22 /* ViagemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViagemTableViewCell.swift; sourceTree = "<group>"; };
+		D0DC83F825E95EF600744B03 /* ConfirmsPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmsPaymentViewController.swift; sourceTree = "<group>"; };
 		D0E4E93425E678B400A9BE2F /* travelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = travelDetailViewController.swift; sourceTree = "<group>"; };
 		D0E4E93825E683A900A9BE2F /* PacoteViagem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacoteViagem.swift; sourceTree = "<group>"; };
 		D0E4E93B25E68E8D00A9BE2F /* packagesTravelsDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packagesTravelsDao.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		D084158625E1F06100594C22 /* AluraViagens */ = {
 			isa = PBXGroup;
 			children = (
+				D0DC83F725E95E3D00744B03 /* ConfirmsPayment */,
 				D0E4E93125E6787200A9BE2F /* TravelDetail */,
 				D08415B825E20DE500594C22 /* ViagemDao */,
 				D039CC3F25E49CA80015386E /* Packages */,
@@ -188,6 +191,30 @@
 				D0E4E93B25E68E8D00A9BE2F /* packagesTravelsDao.swift */,
 			);
 			path = ViagemDao;
+			sourceTree = "<group>";
+		};
+		D0DC83F725E95E3D00744B03 /* ConfirmsPayment */ = {
+			isa = PBXGroup;
+			children = (
+				D0DC83FE25E95F0800744B03 /* View */,
+				D0DC83FC25E95EFB00744B03 /* Controller */,
+			);
+			path = ConfirmsPayment;
+			sourceTree = "<group>";
+		};
+		D0DC83FC25E95EFB00744B03 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D0DC83F825E95EF600744B03 /* ConfirmsPaymentViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D0DC83FE25E95F0800744B03 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D0E4E93125E6787200A9BE2F /* TravelDetail */ = {
@@ -334,6 +361,7 @@
 				D084158825E1F06100594C22 /* AppDelegate.swift in Sources */,
 				D039CC4625E49E8B0015386E /* travelPackagesCollectionViewCell.swift in Sources */,
 				D0E4E93C25E68E8D00A9BE2F /* packagesTravelsDao.swift in Sources */,
+				D0DC83F925E95EF600744B03 /* ConfirmsPaymentViewController.swift in Sources */,
 				D039CC4325E49CE50015386E /* PackagesViewController.swift in Sources */,
 				D0E4E93525E678B400A9BE2F /* travelDetailViewController.swift in Sources */,
 				D084158A25E1F06100594C22 /* SceneDelegate.swift in Sources */,
