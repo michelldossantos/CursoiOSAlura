@@ -51,8 +51,10 @@ extension PackagesViewController: UICollectionViewDataSource{
 extension PackagesViewController: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = collecttionTravelPackages.bounds.width / 2
-        return CGSize(width: cellWidth - 15 , height: 160)
+//        let cellWidth = collecttionTravelPackages.bounds.width / 2
+//        return CGSize(width: cellWidth - 15 , height: 160)
+        
+        return UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone ? CGSize(width: collectionView.bounds.width / 2 - 20, height: 160) : CGSize(width: collectionView.bounds.width / 3 - 20, height: 250)
     }
 }
 

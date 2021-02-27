@@ -20,7 +20,7 @@ class travelDetailViewController: UIViewController {
     
     //MARK: IBAction
     @IBAction func buttonBack(_ sender: UIButton){
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func actionTextFieldDate(_ sender: UITextField) {
