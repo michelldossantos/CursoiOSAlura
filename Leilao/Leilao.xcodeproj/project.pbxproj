@@ -15,6 +15,12 @@
 		D034A52E25EB306900F7ED27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D034A52C25EB306900F7ED27 /* LaunchScreen.storyboard */; };
 		D034A53925EB306A00F7ED27 /* LeilaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034A53825EB306A00F7ED27 /* LeilaoTests.swift */; };
 		D034A54425EB306A00F7ED27 /* LeilaoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034A54325EB306A00F7ED27 /* LeilaoUITests.swift */; };
+		D043F51325F1C16D000D087D /* CriadorLeilao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D043F51225F1C16D000D087D /* CriadorLeilao.swift */; };
+		D0A9248425ED03160032CBA0 /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9248325ED03160032CBA0 /* Bid.swift */; };
+		D0A9248C25ED040B0032CBA0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9248B25ED040B0032CBA0 /* User.swift */; };
+		D0A9249125ED04470032CBA0 /* Auction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9249025ED04470032CBA0 /* Auction.swift */; };
+		D0A9249925ED071E0032CBA0 /* Avaliador.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9249825ED071E0032CBA0 /* Avaliador.swift */; };
+		D0A9249E25ED09020032CBA0 /* AvaliadorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9249D25ED09020032CBA0 /* AvaliadorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		D034A53F25EB306A00F7ED27 /* LeilaoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeilaoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D034A54325EB306A00F7ED27 /* LeilaoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeilaoUITests.swift; sourceTree = "<group>"; };
 		D034A54525EB306A00F7ED27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D043F51225F1C16D000D087D /* CriadorLeilao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriadorLeilao.swift; sourceTree = "<group>"; };
+		D0A9248325ED03160032CBA0 /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
+		D0A9248B25ED040B0032CBA0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D0A9249025ED04470032CBA0 /* Auction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auction.swift; sourceTree = "<group>"; };
+		D0A9249825ED071E0032CBA0 /* Avaliador.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avaliador.swift; sourceTree = "<group>"; };
+		D0A9249D25ED09020032CBA0 /* AvaliadorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvaliadorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +111,11 @@
 		D034A52025EB306500F7ED27 /* Leilao */ = {
 			isa = PBXGroup;
 			children = (
+				D0A9247E25ED02670032CBA0 /* Controller */,
+				D0A9247D25ED02560032CBA0 /* Views */,
+				D0A9247C25ED024F0032CBA0 /* Models */,
 				D034A52125EB306500F7ED27 /* AppDelegate.swift */,
 				D034A52325EB306500F7ED27 /* SceneDelegate.swift */,
-				D034A52525EB306500F7ED27 /* ViewController.swift */,
 				D034A52725EB306500F7ED27 /* Main.storyboard */,
 				D034A52A25EB306900F7ED27 /* Assets.xcassets */,
 				D034A52C25EB306900F7ED27 /* LaunchScreen.storyboard */,
@@ -115,6 +129,7 @@
 			children = (
 				D034A53825EB306A00F7ED27 /* LeilaoTests.swift */,
 				D034A53A25EB306A00F7ED27 /* Info.plist */,
+				D0A9249D25ED09020032CBA0 /* AvaliadorTests.swift */,
 			);
 			path = LeilaoTests;
 			sourceTree = "<group>";
@@ -126,6 +141,33 @@
 				D034A54525EB306A00F7ED27 /* Info.plist */,
 			);
 			path = LeilaoUITests;
+			sourceTree = "<group>";
+		};
+		D0A9247C25ED024F0032CBA0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D0A9248325ED03160032CBA0 /* Bid.swift */,
+				D0A9248B25ED040B0032CBA0 /* User.swift */,
+				D0A9249025ED04470032CBA0 /* Auction.swift */,
+				D0A9249825ED071E0032CBA0 /* Avaliador.swift */,
+				D043F51225F1C16D000D087D /* CriadorLeilao.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D0A9247D25ED02560032CBA0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D0A9247E25ED02670032CBA0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D034A52525EB306500F7ED27 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +300,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D043F51325F1C16D000D087D /* CriadorLeilao.swift in Sources */,
 				D034A52625EB306500F7ED27 /* ViewController.swift in Sources */,
+				D0A9249125ED04470032CBA0 /* Auction.swift in Sources */,
 				D034A52225EB306500F7ED27 /* AppDelegate.swift in Sources */,
 				D034A52425EB306500F7ED27 /* SceneDelegate.swift in Sources */,
+				D0A9248C25ED040B0032CBA0 /* User.swift in Sources */,
+				D0A9249925ED071E0032CBA0 /* Avaliador.swift in Sources */,
+				D0A9248425ED03160032CBA0 /* Bid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D034A53925EB306A00F7ED27 /* LeilaoTests.swift in Sources */,
+				D0A9249E25ED09020032CBA0 /* AvaliadorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
