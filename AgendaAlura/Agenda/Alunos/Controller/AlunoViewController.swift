@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlunoViewController: UIViewController {
+class AlunoViewController: UIViewController, imagePickerFotoSelecionada {
     
     // MARK: - IBOutlets
     
@@ -24,16 +24,21 @@ class AlunoViewController: UIViewController {
     @IBOutlet weak var textFieldNota: UITextField!
     
     // MARK: - View Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.arredondaView()
+        self.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(aumentarScrollView(_:)), name: .UIKeyboardWillShow, object: nil)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    //MARK: - Atributos
+    
+    let imagePiker = ImagePicker()
     
     // MARK: - Métodos
     
@@ -47,10 +52,41 @@ class AlunoViewController: UIViewController {
         self.scrollViewPrincipal.contentSize = CGSize(width: self.scrollViewPrincipal.frame.width, height: self.scrollViewPrincipal.frame.height + self.scrollViewPrincipal.frame.height/2)
     }
     
+    func setup() {
+        imagePiker.delegate = self
+    }
+    
+    func mostrarMultimidia(_ opcao: MenuOpcoes){
+        
+        let multimidia = UIImagePickerController()
+        multimidia.delegate = imagePiker
+        
+        if opcao == .camera && UIImagePickerController.isSourceTypeAvailable(.camera) {
+            multimidia.sourceType = .camera
+        } else {
+            multimidia.sourceType  = .photoLibrary
+        }
+       
+        self.present(multimidia, animated: true, completion: nil)
+        
+    }
+    
+    //MARK: - Delegates
+    func imagePickerFotoSelecionada(_ foto: UIImage) {
+        imageAluno.image = foto
+    }
+    
     // MARK: - IBActions
     
     @IBAction func buttonFoto(_ sender: UIButton) {
-        // TO DO
+        
+        let menu = imagePiker.menuDeOpcoes { (opcao) in
+            self.mostrarMultimidia(opcao)
+        }
+        self.present(menu, animated: true, completion: nil)
+        
+        
+        
     }
     
     @IBAction func stepperNota(_ sender: UIStepper) {
