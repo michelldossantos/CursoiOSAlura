@@ -19,6 +19,16 @@ class HomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func configuracell (_ aluno: Aluno){
+        labelNomeDoAluno.text = aluno.nome
+        
+        imageAluno.layer.cornerRadius = imageAluno.frame.width / 2
+        imageAluno.layer.masksToBounds = true
+        if let imageAluno = aluno.foto as? UIImage {
+            self.imageAluno.image  = imageAluno
+        }
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

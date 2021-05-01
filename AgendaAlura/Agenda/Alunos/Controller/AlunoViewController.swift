@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AlunoViewController: UIViewController, imagePickerFotoSelecionada {
     
@@ -40,6 +41,13 @@ class AlunoViewController: UIViewController, imagePickerFotoSelecionada {
     
     let imagePiker = ImagePicker()
     
+    var contexto: NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
+    var aluno: Aluno?
+    
     // MARK: - Métodos
     
     func arredondaView() {
@@ -54,6 +62,14 @@ class AlunoViewController: UIViewController, imagePickerFotoSelecionada {
     
     func setup() {
         imagePiker.delegate = self
+        guard let alunoSelecionado = aluno else { return  }
+        textFieldNome.text = alunoSelecionado.nome
+        textFieldNota.text = "\(alunoSelecionado.nota)"
+        textFieldSite.text = alunoSelecionado.site
+        textFieldEndereco.text = alunoSelecionado.endereco
+        textFieldTelefone.text = alunoSelecionado.telefone
+        imageAluno.image = alunoSelecionado.foto as? UIImage
+        
     }
     
     func mostrarMultimidia(_ opcao: MenuOpcoes){
@@ -91,6 +107,27 @@ class AlunoViewController: UIViewController, imagePickerFotoSelecionada {
     
     @IBAction func stepperNota(_ sender: UIStepper) {
         self.textFieldNota.text = "\(sender.value)"
+    }
+    
+    @IBAction func btnSalvar(_ seder: UIButton) {
+  
+        if aluno == nil {
+            aluno = Aluno(context: contexto)
+        }
+        
+        aluno?.nome = textFieldNome.text
+        aluno?.endereco = textFieldEndereco.text
+        aluno?.telefone = textFieldTelefone.text
+        aluno?.site = textFieldSite.text
+        aluno?.nota = (textFieldNota.text! as NSString).doubleValue
+        aluno?.foto = imageAluno.image
+
+              do {
+                  try contexto.save()
+                  navigationController?.popViewController(animated: true)
+              } catch {
+                  print(error.localizedDescription)
+              }
     }
     
     
