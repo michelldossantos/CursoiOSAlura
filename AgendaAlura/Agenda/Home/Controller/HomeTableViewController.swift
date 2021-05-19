@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+@available(iOS 13.0, *)
 class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFetchedResultsControllerDelegate {
     
     //MARK: - Variáveis
@@ -22,7 +23,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
     var alunoViewController: AlunoViewController?
     
     // MARK: - View Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configuraSearch()
@@ -60,27 +61,68 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
             print(error.localizedDescription)
         }
     }
-
+    
+    @objc func abrirActionSheet(_ longPress: UILongPressGestureRecognizer) {
+        
+        if longPress.state == .began {
+            guard let alunoSelecionado = gerenciadorDeResultados?.fetchedObjects?[(longPress.view?.tag)!] else { return }
+            let menu = MenuOpcoesAluno().configuraMenuOpcoesDoAluno(completion: { (opcao) in
+                switch opcao {
+                case .sms:
+                  print("sms")
+                    break
+                case .ligacao:
+                    guard let numeroDoAluno = alunoSelecionado.telefone else { return }
+                    if let url = URL(string: "tel://\(numeroDoAluno)"), UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                    break
+                case .waze:
+                    if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
+                        guard let enderecoDoAluno = alunoSelecionado.endereco else { return }
+                        Localizacao().converteEnderecoEmCordenadas(endereco: enderecoDoAluno, local: { (localizacaoEncontrada) in
+                            let latitude = String(describing: localizacaoEncontrada.location!.coordinate.latitude)
+                            let longitude = String(describing: localizacaoEncontrada.location!.coordinate.longitude)
+                            let url:String = "waze://?ll=\(latitude),\(longitude)&navigate=yes"
+                                UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+                        })
+                    }
+                    break
+                   
+                case .mapa:
+                    let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mapa") as! MapaViewController
+                    mapa.aluno = alunoSelecionado
+                    self.navigationController?.pushViewController(mapa, animated: true)
+                }
+            })
+            self.present(menu, animated: true, completion: nil)
+        }
+        
+    }
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let alunos = gerenciadorDeResultados?.fetchedObjects?.count else {return 0}
         
         return alunos
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celula-aluno", for: indexPath) as! HomeTableViewCell
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(abrirActionSheet(_:)))
+        
         guard let aluno = gerenciadorDeResultados?.fetchedObjects![indexPath.row] else { return cell }
         
         cell.configuracell(aluno)
+        cell.addGestureRecognizer(longPress)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
-
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let alunoSelecionado = gerenciadorDeResultados?.fetchedObjects![indexPath.row] else { return  }
@@ -92,7 +134,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
                 print(error.localizedDescription)
             }
             
-          
+            
             
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -119,5 +161,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
             tableView.reloadData()
         }
     }
-
+    
+    @IBAction func ButtonCalculaMedia(_ sender: UIBarButtonItem) {
+    }
 }

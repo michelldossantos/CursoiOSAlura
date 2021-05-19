@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MAa-UF-TLD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MAa-UF-TLD">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +19,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="celula-aluno" rowHeight="85" id="4uR-YV-UME" customClass="HomeTableViewCell" customModule="Agenda" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                <rect key="frame" x="0.0" y="24.5" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4uR-YV-UME" id="Cvy-MG-lis">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
@@ -51,7 +52,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Agenda" id="aoB-Jw-lAm">
                         <barButtonItem key="backBarButtonItem" title=" " id="M57-Hv-I3X"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="dzi-1s-s3a"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="dzi-1s-s3a">
+                            <connections>
+                                <action selector="ButtonCalculaMedia:" destination="Qhi-kM-lyB" id="d1x-bU-mDB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4cp-jd-Mnv">
                             <connections>
                                 <segue destination="ZY7-NM-Hup" kind="show" id="tio-sZ-JlU"/>
@@ -81,7 +86,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6G-KS-zIE">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6G-KS-zIE">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="foto"/>
@@ -192,7 +197,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="dPn-ns-KJF"/>
                                                 </constraints>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrw-az-0aw">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrw-az-0aw">
                                                 <rect key="frame" x="0.0" y="359" width="343" height="30"/>
                                                 <color key="backgroundColor" red="0.20784313730000001" green="0.54901960780000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -220,6 +225,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="nVT-S7-kWk"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nVT-S7-kWk" firstAttribute="trailing" secondItem="kjd-vi-ppJ" secondAttribute="trailing" constant="16" id="CyK-Wq-lgu"/>
@@ -227,7 +233,6 @@
                             <constraint firstItem="kjd-vi-ppJ" firstAttribute="bottom" secondItem="nVT-S7-kWk" secondAttribute="bottom" id="mHr-tI-Uod"/>
                             <constraint firstItem="kjd-vi-ppJ" firstAttribute="leading" secondItem="nVT-S7-kWk" secondAttribute="leading" constant="16" id="tnp-nO-LJA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="nVT-S7-kWk"/>
                     </view>
                     <navigationItem key="navigationItem" id="6ym-C3-vVp"/>
                     <connections>
@@ -245,6 +250,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eia-sQ-Gcl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1189.5999999999999" y="115.59220389805098"/>
+        </scene>
+        <!--Mapa View Controller-->
+        <scene sceneID="pTG-45-yJh">
+            <objects>
+                <viewController storyboardIdentifier="mapa" id="84U-H9-Y38" customClass="MapaViewController" customModule="Agenda" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7gR-JR-dkk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iaz-eQ-H57">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XE8-P5-oSz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iaz-eQ-H57" firstAttribute="top" secondItem="XE8-P5-oSz" secondAttribute="top" id="GjO-ff-glo"/>
+                            <constraint firstItem="iaz-eQ-H57" firstAttribute="trailing" secondItem="XE8-P5-oSz" secondAttribute="trailing" id="Oby-Rf-ZDN"/>
+                            <constraint firstItem="XE8-P5-oSz" firstAttribute="bottom" secondItem="iaz-eQ-H57" secondAttribute="bottom" id="Pb2-p9-qgg"/>
+                            <constraint firstItem="iaz-eQ-H57" firstAttribute="leading" secondItem="XE8-P5-oSz" secondAttribute="leading" id="yAJ-xX-Kgr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapa" destination="iaz-eQ-H57" id="xO7-a1-DH6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ooV-PJ-sBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yXs-rW-FGy">
@@ -266,4 +300,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="6zG-uz-uBP"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
