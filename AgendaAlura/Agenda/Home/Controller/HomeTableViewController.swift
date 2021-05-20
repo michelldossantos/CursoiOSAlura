@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SafariServices 
 
 @available(iOS 13.0, *)
 class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFetchedResultsControllerDelegate {
@@ -45,11 +46,16 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         self.navigationItem.searchController = searchController
     }
     
-    func recuperaAluno(){
+    func recuperaAluno(_ filtro: String = "" ){
         
         let pesquisaAluno: NSFetchRequest<Aluno> = Aluno.fetchRequest()
         let ordenaPorNome = NSSortDescriptor(key: "nome", ascending: true)
         pesquisaAluno.sortDescriptors = [ordenaPorNome]
+        
+        if podeFiltrar(filtro) {
+            pesquisaAluno.predicate = filtraAluno(filtro)
+        }
+        
         
         
         gerenciadorDeResultados = NSFetchedResultsController(fetchRequest: pesquisaAluno, managedObjectContext: contexto, sectionNameKeyPath: nil, cacheName: nil)
@@ -60,6 +66,19 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         }catch{
             print(error.localizedDescription)
         }
+    }
+    
+    func filtraAluno(_ filtro: String) -> NSPredicate {
+        return NSPredicate(format: "nome CONTAINS %@", filtro)
+    }
+    
+    func podeFiltrar(_ filtro: String) -> Bool {
+        
+        if filtro.isEmpty {
+            return false
+        }
+        
+        return true
     }
     
     @objc func abrirActionSheet(_ longPress: UILongPressGestureRecognizer) {
@@ -93,6 +112,21 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
                     let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mapa") as! MapaViewController
                     mapa.aluno = alunoSelecionado
                     self.navigationController?.pushViewController(mapa, animated: true)
+                case .abrirPaginaWeb:
+                    
+                    if let url = alunoSelecionado.site {
+                        
+                        var urlFormatada = url
+                        
+                        if !urlFormatada.hasPrefix("http://") {
+                            urlFormatada = "http://\(urlFormatada)"
+                        }
+                        guard let url = URL(string: urlFormatada) else {return}
+                        let safariViewController = SFSafariViewController(url: url)
+                        self.present(safariViewController, animated: true, completion: nil)
+                    }
+                    
+                    break
                 }
             })
             self.present(menu, animated: true, completion: nil)
@@ -125,14 +159,24 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            guard let alunoSelecionado = gerenciadorDeResultados?.fetchedObjects![indexPath.row] else { return  }
-            contexto.delete(alunoSelecionado)
             
-            do {
-                try contexto.save()
-            } catch {
-                print(error.localizedDescription)
+            AutenticacaoLocal().autorizaUsuario { autenticado in
+                if autenticado {
+                    DispatchQueue.main.async {
+                        guard let alunoSelecionado = self.gerenciadorDeResultados?.fetchedObjects![indexPath.row] else { return  }
+                        self.contexto.delete(alunoSelecionado)
+                        
+                        do {
+                            try self.contexto.save()
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                   
+                }
             }
+            
+           
             
             
             
@@ -163,5 +207,31 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
     }
     
     @IBAction func ButtonCalculaMedia(_ sender: UIBarButtonItem) {
+        
+        
+    }
+    
+    @IBAction func buttonLocalixacaoGeral(_ sender: UIBarButtonItem) {
+        
+        let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mapa") as! MapaViewController
+        
+        navigationController?.pushViewController(mapa, animated: true)
+        
+    }
+    
+    
+    
+    //MARK: Search Delegate
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let nomeAluno = searchBar.text else { return}
+        recuperaAluno(nomeAluno)
+        tableView.reloadData()
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        recuperaAluno()
+        tableView.reloadData()
     }
 }

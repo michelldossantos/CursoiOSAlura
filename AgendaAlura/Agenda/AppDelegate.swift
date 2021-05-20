@@ -9,8 +9,13 @@
 import UIKit
 import CoreData
 
+@available(iOS 13.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    enum  TipoDeShortcut: String {
+        case cadastrarAluno = "CadastrarAluno"
+    }
 
     var window: UIWindow?
 
@@ -43,7 +48,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if let tipo = TipoDeShortcut(rawValue: shortcutItem.type) {
+            switch tipo {
+            case .cadastrarAluno:
+                let cadastrarAluno = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "cadastrar")
+                
+                let navigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
+                
+                navigation?.pushViewController(cadastrarAluno, animated: true)
+                
+                break
+            }
+        }
+    }
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

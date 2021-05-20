@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+@available(iOS 13.0, *)
 class AlunoViewController: UIViewController, imagePickerFotoSelecionada {
     
     // MARK: - IBOutlets

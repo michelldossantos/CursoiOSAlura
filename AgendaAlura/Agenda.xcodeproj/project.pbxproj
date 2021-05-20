@@ -17,6 +17,8 @@
 		03AA176D1FC8515A003CB2B8 /* AlunoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AA176C1FC8515A003CB2B8 /* AlunoViewController.swift */; };
 		D0044EAD26509FF2002AF420 /* MenuOpcoesAluno.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0044EAC26509FF2002AF420 /* MenuOpcoesAluno.swift */; };
 		D0044EAF2650AFA3002AF420 /* Mensagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0044EAE2650AFA3002AF420 /* Mensagem.swift */; };
+		D004BED22654A427008831CA /* AutenticacaoLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004BED12654A427008831CA /* AutenticacaoLocal.swift */; };
+		D01911B12655D9E90077E47A /* Pino.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01911B02655D9E90077E47A /* Pino.swift */; };
 		D064E519265341BA00E85113 /* Localizacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D064E518265341BA00E85113 /* Localizacao.swift */; };
 		D064E51D265348FE00E85113 /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D064E51C265348FE00E85113 /* MapaViewController.swift */; };
 		D064E5202653562C00E85113 /* CalculaMediaApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D064E51F2653562C00E85113 /* CalculaMediaApi.swift */; };
@@ -36,6 +38,8 @@
 		03AA176C1FC8515A003CB2B8 /* AlunoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlunoViewController.swift; sourceTree = "<group>"; };
 		D0044EAC26509FF2002AF420 /* MenuOpcoesAluno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOpcoesAluno.swift; sourceTree = "<group>"; };
 		D0044EAE2650AFA3002AF420 /* Mensagem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mensagem.swift; sourceTree = "<group>"; };
+		D004BED12654A427008831CA /* AutenticacaoLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutenticacaoLocal.swift; sourceTree = "<group>"; };
+		D01911B02655D9E90077E47A /* Pino.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pino.swift; sourceTree = "<group>"; };
 		D064E518265341BA00E85113 /* Localizacao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizacao.swift; sourceTree = "<group>"; };
 		D064E51C265348FE00E85113 /* MapaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
 		D064E51F2653562C00E85113 /* CalculaMediaApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculaMediaApi.swift; sourceTree = "<group>"; };
@@ -136,9 +140,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D01911AF2655D9D80077E47A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D01911B02655D9E90077E47A /* Pino.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D064E51A265348D000E85113 /* Mapa */ = {
 			isa = PBXGroup;
 			children = (
+				D01911AF2655D9D80077E47A /* Model */,
 				D064E51B265348E000E85113 /* Controller */,
 			);
 			path = Mapa;
@@ -167,6 +180,7 @@
 				D0044EAC26509FF2002AF420 /* MenuOpcoesAluno.swift */,
 				D0044EAE2650AFA3002AF420 /* Mensagem.swift */,
 				D064E518265341BA00E85113 /* Localizacao.swift */,
+				D004BED12654A427008831CA /* AutenticacaoLocal.swift */,
 			);
 			path = Componentes;
 			sourceTree = "<group>";
@@ -249,7 +263,9 @@
 				03AA17561FC84154003CB2B8 /* Agenda.xcdatamodeld in Sources */,
 				D064E5202653562C00E85113 /* CalculaMediaApi.swift in Sources */,
 				D08DB2E3263A4EF9006D1614 /* ImagePicker.swift in Sources */,
+				D004BED22654A427008831CA /* AutenticacaoLocal.swift in Sources */,
 				03AA17681FC843B1003CB2B8 /* HomeTableViewCell.swift in Sources */,
+				D01911B12655D9E90077E47A /* Pino.swift in Sources */,
 				D0044EAF2650AFA3002AF420 /* Mensagem.swift in Sources */,
 				D064E51D265348FE00E85113 /* MapaViewController.swift in Sources */,
 				03AA174E1FC84154003CB2B8 /* AppDelegate.swift in Sources */,

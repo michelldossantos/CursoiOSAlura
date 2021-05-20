@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapaViewController: UIViewController {
+class MapaViewController: UIViewController, CLLocationManagerDelegate {
     
     
     //MARK OUTLET
@@ -19,29 +19,49 @@ class MapaViewController: UIViewController {
     //MARK: Variaveis
     
     var aluno: Aluno?
+    lazy var localizao = Localizacao()
+    lazy var gerenciadorDeLocalizacao = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Localizar aluno"
         localizacaoInicial()
         localizarAluno()
+        mapa.delegate = localizao
+        gerenciadorDeLocalizacao.delegate = self
+        verificaAutorizacaoDoUsuario()
+        
+        
     }
     
-    func confugurarPino(_ titulo: String, _ localizacao: CLPlacemark) -> MKPointAnnotation {
-        
-        let pino = MKPointAnnotation()
-        pino.title = titulo
-        pino.coordinate = localizacao.location!.coordinate
-        
-        
-        return pino
+    
+    func verificaAutorizacaoDoUsuario() {
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+                
+            case .authorizedWhenInUse:
+                let botao = Localizacao().configuraBotaoDeLocalizacaoAtual(mapa: mapa)
+                mapa.addSubview(botao)
+                gerenciadorDeLocalizacao.startUpdatingLocation()
+                break
+            case .notDetermined:
+                gerenciadorDeLocalizacao.requestWhenInUseAuthorization()
+
+                break
+            case .restricted:
+                break
+            case .denied:
+                break
+            case .authorizedAlways:
+                break
+            }
+        }
     }
     
     func localizacaoInicial () {
         Localizacao().converteEnderecoEmCordenadas(endereco: "Sapiranga - RS") { localizacaoEncontrada in
-            let pino = MKPointAnnotation()
-            pino.title = "Sapiranga"
-            pino.coordinate = localizacaoEncontrada.location!.coordinate
+            let pino = Localizacao().confugurarPino("Sapiranga", localizacaoEncontrada, cor: .black, icone: nil)
+            
             
             let regiao = MKCoordinateRegionMakeWithDistance(pino.coordinate, 3000 , 3000)
             
@@ -53,11 +73,30 @@ class MapaViewController: UIViewController {
     func localizarAluno () {
         if let aluno = aluno {
             Localizacao().converteEnderecoEmCordenadas(endereco: (aluno.endereco)!) { [self] localizacaoEncontrada in
-                let pino = confugurarPino(aluno.nome!, localizacaoEncontrada)
+//                let pino = confugurarPino(aluno.nome!, localizacaoEncontrada)
+                let pino = Localizacao().confugurarPino(aluno.nome!, localizacaoEncontrada, cor: nil, icone: nil)
                 self.mapa.addAnnotation(pino)
             }
         }
         
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse:
+            let botao = Localizacao().configuraBotaoDeLocalizacaoAtual(mapa: mapa)
+            mapa.addSubview(botao)
+            gerenciadorDeLocalizacao.startUpdatingLocation()
+            break
+        default:
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations)
+    }
 
 }
+
+

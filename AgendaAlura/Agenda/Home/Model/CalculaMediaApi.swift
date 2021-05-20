@@ -10,9 +10,9 @@ import UIKit
 
 class CalculaMediaApi: NSObject {
     
-    func calculaMediaGeralDosAlunos() {
-        
-        var requisicao = URLRequest(url: <#T##URL#>)
-    }
+//    func calculaMediaGeralDosAlunos() {
+//        
+//        var requisicao = URLRequest(url: <#T##URL#>)
+//    }
 
 }
