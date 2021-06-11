@@ -1,5 +1,5 @@
 # CursoiOSAlura
-Repositório para prática do curso de desenvolvimento iOS da Alura.
+Repositório para prática do curso de desenvolvimento iOS da Alura
 
 <div align="center">
 
