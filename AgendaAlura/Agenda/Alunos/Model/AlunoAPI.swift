@@ -7,7 +7,15 @@
 //
 
 import UIKit
-
+import Alamofire
 class AlunoAPI: NSObject {
 
+    func salvaAlunoNoServidor() {
+        
+        guard let url = URL(string: "http://localhost:8080/api/aluno/lista") else { return }
+        Alamofire.requestecatch
+            }
+    
+
+    
 }

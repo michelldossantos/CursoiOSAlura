@@ -159,6 +159,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+             
             
             AutenticacaoLocal().autorizaUsuario { autenticado in
                 if autenticado {
